@@ -1,8 +1,12 @@
-let snake_case =10;
+const title = 1
+const screens = 2
+const screenPrice = 3
+const rollback = 4
+const fullPrice = 5
+const adaptive = 6
 
-snake_case = 20;
+alert("Привет, Виталий!")
 
-var personAge = 20
+console.log("Надоели групповые созвоны")
 
-console.log('personAge', personAge)
 
