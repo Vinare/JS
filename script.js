@@ -29,16 +29,14 @@ console.log(fullPrice)
 const servicePercentPrice = Math.ceil(fullPrice - 3000.5)
 console.log(servicePercentPrice)
 
-if (fullPrice > 30000 || fullPrice == 30000) {
+if (fullPrice >= 30000) {
   console.log('Даем скидку в 10%')
-} else if (fullPrice < 30000 && fullPrice > 15000) {
+} else if (fullPrice < 30000 && fullPrice >= 15000) {
   console.log('Даем скидку в 5%')
 } else if (fullPrice < 15000 && fullPrice > 0) {
   console.log('Скидка не предусмотрена')
-} else if (fullPrice < 0) {
+} else if (fullPrice <= 0) {
   console.log('Что-то пошло не так')
-} else {
-  console.log('Что-то опять пошло не так')
 }
 
 
