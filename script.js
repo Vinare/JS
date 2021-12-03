@@ -28,47 +28,44 @@ function getRollbackMessage(price) {
 }
 
 showTypeOf(title)
-showTypeOf(screens)
 showTypeOf(screenPrice)
-showTypeOf(fullPrice)
-showTypeOf(servicePercentPrice)
+showTypeOf(adaptive)
+
 
 console.log(getRollbackMessage(fullPrice))
+console.log(typeof title)
+console.log(typeof screenPrice)
+console.log(typeof adaptive)
 
                                // Homework  //
 
 let rollback = 5
 
-
 let allServicePrices = function getAllServicePrices(expenses1, expenses2) {
   return expenses1 + expenses2
 }
-
-allServicePrices = servicePrice1 + servicePrice2
 
 function getFullPrice(screenprice, addprice) {
   return screenprice + addprice
 }
 
-fullPrice = screenPrice + allServicePrices
-
 function getTitle(title) {
   title = title.trim()
-  return title[0].toUpperCase() + title.slice(1)
+  return title[0].toUpperCase() + title.slice(1).toLowerCase()
 }
 
-const rollBacksum = function(fullprice, rollbackpercent) {
-  return fullprice * (rollbackpercent/100)
+const rollBacksum = function(totalprice, rollbackpercent) {
+  return totalprice * (rollbackpercent/100)
 }
 
-servicePercentPrice = function getServicePercentPrices(fullprice, collback) {
-  return fullprice - collback(fullPrice, rollback)
+servicePercentPrice = function getServicePercentPrices(totalprice, callback) {
+  return totalprice - callback(fullPrice, rollback)
 }
 
 
-console.log('Cумма всех дополнительных услуг = ' + allServicePrices + ' рублей')
+console.log(allServicePrices(servicePrice1, servicePrice2)) 
 
-console.log('Cумма стоимости верстки и дополнительных услуг = ' + getFullPrice(screenPrice,allServicePrices) + ' рублей')
+console.log(getFullPrice(screenPrice, allServicePrices(servicePrice1, servicePrice2))) 
 
 console.log(getTitle(title))
 
