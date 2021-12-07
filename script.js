@@ -6,6 +6,9 @@ let screenPrice
 let adaptive 
 let service1 
 let service2 
+let servicePrice1
+let servicePrice2
+
 
 let rollback = 5
 let rollBackSum
@@ -18,7 +21,7 @@ const showTypeOf = function(variable) {
   console.log(variable, typeof variable)
 }
 
-const isNumber = function(num) {
+let isNumber = function(num) {
   return !isNaN(parseFloat(num)) && isFinite(num)
 }
 
@@ -40,18 +43,20 @@ const getAllServicePrices = function() {
 
     if (i === 0) {
       service1 = prompt('Какой дополнительный тип услуги нужен?')
+      
+      while (!isNumber(servicePrice1)) {
+        servicePrice1 = +prompt('Сколько это будет стоить?')
+      }
     } else if (i === 1) {
       service2 = prompt('Какой дополнительный тип услуги нужен?')
+
+      while (!isNumber(servicePrice2)) {
+        servicePrice2 = +prompt('Сколько это будет стоить?')
+      }
     }
-
-    sum += +prompt('Сколько это будет стоить?')
-
-    // while (!isNumber(sum)) {
-    //   sum += +prompt('Сколько это будет стоить?')
-    // }
+   sum = servicePrice1 + servicePrice2
   }
-
-  return sum
+  return sum 
 }
 
 const getFullPrice = function() {
@@ -99,7 +104,6 @@ console.log(getRollbackMessage(fullPrice))
 console.log(fullPrice) 
 console.log(servicePercentPrice)
 console.log(title)
-console.log(screens.split())
 
 console.log('Стоимость верстки экранов ' + screenPrice + ' рублей \nСтоимость разработки сайта ' + fullPrice + ' рублей')
 
