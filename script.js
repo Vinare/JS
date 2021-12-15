@@ -1,112 +1,91 @@
-"use strict"
+"use strict";
 
-let title 
-let screens 
-let screenPrice 
-let adaptive 
-let service1 
-let service2 
-let servicePrice1
-let servicePrice2
+const appData = {
+  title: '', 
+  screens: '', 
+  screenPrice: 0, 
+  adaptive: true,  
+  rollback: 5,
+  allServicePrices: 0,
+  fullPrice: 0, 
+  servicePercentPrice: 0, 
+  service1: '', 
+  service2: '',
+  start: function() {
+    appData.asking();
+  },
+  asking: function() {
+    appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки');
+    appData.screens = prompt('Какие типы экранов нужно разработать?', "Простые, Сложные, Интерактивные");
+    
+    do {
+      appData.screenPrice = prompt('Сколько будет стоить данная работа?');
+    } while (!appData.isNumber(appData.screenPrice)); 
 
-
-let rollback = 5
-let rollBackSum
-let allServicePrices
-let fullPrice 
-let servicePercentPrice 
-
-
-const showTypeOf = function(variable) {
-  console.log(variable, typeof variable)
-}
-
-let isNumber = function(num) {
-  return !isNaN(parseFloat(num)) && isFinite(num)
-}
-
-const asking = function() {
-  title = prompt('Как называется ваш проект?', 'Калькулятор верстки')
-  screens = prompt('Какие типы экранов нужно разработать?', "Простые, Сложные, Интерактивные")
+    appData.adaptive = confirm('Нужен ли адаптив на сайте?');
+  },
   
-  do {
-    screenPrice = +prompt('Сколько будет стоить данная работа?')
-  } while (!isNumber(screenPrice)) 
-
-  adaptive = confirm('Нужен ли адаптив на сайте?')
-}
-
-const getAllServicePrices = function() {
-  let sum = 0
+  isNumber: function(num) {
+  return !isNaN(parseFloat(num)) && isFinite(num);
+  },
+  
+  getAllServicePrices: function() {
+  let sum = 0;
 
   for (let i = 0; i < 2; i++) {
+    let price = 0;
 
     if (i === 0) {
-      service1 = prompt('Какой дополнительный тип услуги нужен?')
-      
-      while (!isNumber(servicePrice1)) {
-        servicePrice1 = +prompt('Сколько это будет стоить?')
-      }
+      appData.service1 = prompt('Какой дополнительный тип услуги нужен?');
     } else if (i === 1) {
-      service2 = prompt('Какой дополнительный тип услуги нужен?')
+      appData.service2 = prompt('Какой дополнительный тип услуги нужен?');
+    } 
 
-      while (!isNumber(servicePrice2)) {
-        servicePrice2 = +prompt('Сколько это будет стоить?')
-      }
-    }
-   sum = servicePrice1 + servicePrice2
+    do {
+      price = prompt('Сколько это будет стоить?');
+    } while (!appData.isNumber(price)); 
+
+    sum += +price;
   }
-  return sum 
-}
-
-const getFullPrice = function() {
-  return screenPrice + allServicePrices
-}
-
-const getRollBackSum = function(totalprice, rollbackpercent) {
-  return totalprice * (rollbackpercent/100)
-}
-
-const getServicePercentPrice = function(totalprice, callback) {
-  return totalprice - callback(fullPrice, rollback)
-}
-
-const getTitle = function() {
-  title = title.trim()
-  return title[0].toUpperCase() + title.slice(1).toLowerCase()
-}
-
-const getRollbackMessage = function(price) {
+  return sum; 
+  },
+  
+  getFullPrice: function() {
+  return +appData.screenPrice + appData.allServicePrices;
+  },
+  
+  getServicePercentPrice: function() {
+  return appData.fullPrice - (appData.fullPrice * (appData.rollback / 100));
+  },
+  
+  getTitle: function() {
+  appData.title = appData.title.trim();
+  return appData.title[0].toUpperCase() + appData.title.slice(1).toLowerCase();
+  },
+  
+  getRollbackMessage: function(price) {
   if (price >= 30000) {
-    return 'Даем скидку в 10%'
+    return 'Даем скидку в 10%';
   } else if (price < 30000 && price >= 15000) {
-    return 'Даем скидку в 5%'
+    return 'Даем скидку в 5%';
   } else if (price < 15000 && price > 0) {
-    return 'Скидка не предусмотрена'
-  } else if (price <= 0) {
-    return 'Что-то пошло не так'
+    return 'Скидка не предусмотрена';
+  } else {
+    return 'Что-то пошло не так';
   }
-}
+  },
+};
 
-asking()
-allServicePrices = getAllServicePrices()
-fullPrice = getFullPrice()
-servicePercentPrice = getServicePercentPrice(fullPrice, getRollBackSum)
-title = getTitle()
 
-showTypeOf(title)
-showTypeOf(screenPrice)
-showTypeOf(adaptive)
 
-console.log('allServicePrices', allServicePrices) 
+appData.start();
+appData.allServicePrices = appData.getAllServicePrices();
+appData.fullPrice = appData.getFullPrice();
+appData.servicePercentPrice = appData.getServicePercentPrice();
+appData.title = appData.getTitle();
 
-console.log(getRollbackMessage(fullPrice))
-console.log(fullPrice) 
-console.log(servicePercentPrice)
-console.log(title)
-
-console.log('Стоимость верстки экранов ' + screenPrice + ' рублей \nСтоимость разработки сайта ' + fullPrice + ' рублей')
-
+console.log(appData.fullPrice);
+console.log(appData.servicePercentPrice);
 
 
 
