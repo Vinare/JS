@@ -11,6 +11,7 @@ const appData = {
   servicePercentPrice: 0, 
   service1: '', 
   service2: '',
+
   start: function() {
     appData.asking();
     appData.allServicePrices;
@@ -19,6 +20,7 @@ const appData = {
     appData.title; 
     appData.logger();
   },
+  
   asking: function() {
     appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки');
     appData.screens = prompt('Какие типы экранов нужно разработать?', "Простые, Сложные, Интерактивные");
