@@ -13,6 +13,11 @@ const appData = {
   service2: '',
   start: function() {
     appData.asking();
+    appData.allServicePrices;
+    appData.fullPrice;
+    appData.servicePercentPrice;
+    appData.title; 
+    appData.logger();
   },
   asking: function() {
     appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки');
@@ -74,8 +79,12 @@ const appData = {
     return 'Что-то пошло не так';
   }
   },
+  logger: function() {
+    for (let key in appData) {
+      console.log('Ключ: ' + key + ' Значение: ' + appData[key]);
+    }
+  }
 };
-
 
 
 appData.start();
@@ -84,8 +93,8 @@ appData.fullPrice = appData.getFullPrice();
 appData.servicePercentPrice = appData.getServicePercentPrice();
 appData.title = appData.getTitle();
 
-console.log(appData.fullPrice);
-console.log(appData.servicePercentPrice);
+// console.log(appData.fullPrice);
+// console.log(appData.servicePercentPrice);
 
 
 
