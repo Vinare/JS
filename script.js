@@ -23,20 +23,33 @@ const appData = {
   asking: function() {
     appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки');
 
+    while (!appData.isString(appData.title)) {
+        appData.title = prompt('Как называется ваш проект?', 'Калькулятор верстки');
+    }
+
     for (let i = 0; i < 2; i++) {
       let name = prompt('Какие типы экранов нужно разработать?');
+
+      while (!appData.isString(name)) {
+          name = prompt('Какие типы экранов нужно разработать?');
+      }
+
       let price = 0;
 
       do {
           price = prompt('Сколько будет стоить данная работа?');
       } while (!appData.isNumber(price));
 
-      appData.screens.push({id: i, name: name, price: price});
+      appData.screens.push({id: i, name: name, price: price});  // формируем массив объектов с ключом и значением
     }
-
     
     for (let i = 0; i < 2; i++) {
       let name = prompt('Какой дополнительный тип услуги нужен?');
+      
+      while (!appData.isString(name)) {
+          name = prompt('Какой дополнительный тип услуги нужен?');
+      }
+      
       let price = 0;
 
       // if (i === 0) {
@@ -54,6 +67,10 @@ const appData = {
 
     appData.adaptive = confirm('Нужен ли адаптив на сайте?');
   },
+
+  isString: function(string) {
+    return isNaN(string);
+  }, 
   
   isNumber: function(num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
