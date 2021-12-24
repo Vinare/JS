@@ -1,48 +1,47 @@
 "use strict";
 
-const title = document.getElementsByTagName('h1');
+const title = document.getElementsByTagName('h1')[0];
 
-console.log(title[0]);
+const start = document.getElementsByClassName('handler_btn')[0];
 
-const start = document.getElementsByClassName('handler_btn');
-
-console.log(start[0]);
-
-const reset = document.getElementsByClassName('handler_btn');
-
-console.log(reset[1]);
+const reset = document.getElementsByClassName('handler_btn')[1];
 
 const screenBtn = document.querySelector('.screen-btn');
 
-console.log(screenBtn);
-
 const percent = document.querySelectorAll('.percent');
-
-console.log(percent);
 
 const number = document.querySelectorAll('.number');
 
-console.log(number);
-
 const inputTypeRange = document.querySelector('.rollback input');
-
-console.log(inputTypeRange);
 
 const rangeValue = document.querySelector('.rollback span');
 
+const totalInput = document.getElementsByClassName('total-input')[0];
+
+const totalСount = document.getElementsByClassName('total-input')[1];
+
+const totalСountOther = document.getElementsByClassName('total-input')[2];
+
+const totalFullCount = document.getElementsByClassName('total-input')[3];
+
+const totalCountRollback = document.getElementsByClassName('total-input')[4];
+
+let screenMain = document.querySelectorAll('.screen');
+
+console.log(title);
+console.log(start);
+console.log(reset);
+console.log(screenBtn);
+console.log(percent);
+console.log(number);
+console.log(inputTypeRange);
 console.log(rangeValue);
-
-const totalInput = document.getElementsByClassName('total-input');
-
-for(var i=0; i<totalInput.length; i++) {
-  console.log(totalInput[i]);
-}
-
-let screenChildren = document.querySelectorAll('.screen > div');
-
-for(var i=0; i<screenChildren.length; i++) {
-  console.log(screenChildren[i]);
-}
+console.log(totalInput);
+console.log(totalСount);
+console.log(totalСountOther);
+console.log(totalFullCount);
+console.log(totalCountRollback);
+console.log(screenMain);
 
 
 // const appData = {
