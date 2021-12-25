@@ -1,29 +1,25 @@
 const book = document.querySelectorAll('.book');
 const list2 = document.querySelectorAll('ul')[0];
 const listItems2 = list2.querySelectorAll('li');
+const list5 = document.querySelectorAll('ul')[5];
+const listItems5 = list5.querySelectorAll('li');
+const list6 = document.querySelectorAll('ul')[2];
+const listItems6 = list6.querySelectorAll('li');
 const adv = document.querySelector('.adv');
 const titlePro = document.querySelectorAll('h2')[4];
-const chapterD = document.querySelectorAll('li')[10];
-const chapterC = document.querySelectorAll('li')[2];
-const chapter1 = document.querySelectorAll('li')[3];
-const chapter2 = document.querySelectorAll('li')[6];
-const chapter3 = document.querySelectorAll('.book li')[12];
-const chapterIntro = document.querySelectorAll('li')[47];
-const chapterFirst = document.querySelectorAll('li')[55];
-const chapterThird = document.querySelectorAll('li')[50];
-const chapterFourth = document.querySelectorAll('li')[48];
-const chapterA = document.querySelectorAll('li')[51];
-const chapterB = document.querySelectorAll('li')[54];
-const chapter7 = document.querySelector('li')[55];
+const chapter1 = listItems2[3];
+const chapter2 = listItems2[6];
+const chapter3 = listItems2[8];
+const chapterC = listItems2[2];
+const chapterD = listItems2[10];
+const chapterIntro = listItems5[1];
+const chapterFirst = listItems5[9];
+const chapterThird = listItems5[4];
+const chapterFourth = listItems5[2];
+const chapterA = listItems5[5];
+const chapterB = listItems5[8];
+const chapter7 = listItems6[8];
 const chapter8 = document.createElement('li');
-
-
-
-
-console.log(list2);
-console.log(listItems2);
-
-
 
 book[0].before(book[1]);
 book[0].after(book[4]);
@@ -44,15 +40,6 @@ chapterB.before(chapterA);
 chapterThird.after(chapterFourth);
 
 chapter8.textContent = 'Глава 8: За пределами ES6';
-// lists[2].append(chapter8);
-// chapter7.after(chapter8);
+chapter7.after(chapter8);
 
-
-
-const chapters = document.querySelectorAll('li'); // снова вызываем все главы для обновления коллекции NodeList, чтобы появился новый пункт Глава 8 
-
-console.dir(chapter3);
-console.dir(chapter8);
-console.log(chapters);
-console.log(book);
 
