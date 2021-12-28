@@ -140,4 +140,9 @@ button {
     &:hover {
         background-color: lighten($color: #A52A2A, $amount: 5%)
     }
+
+    &[disabled] {
+        opacity: 0.5;
+        cursor: default;
+    }
 }

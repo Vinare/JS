@@ -743,8 +743,8 @@ button:hover {
   background-color: #b92f2f;
 }
 
-button[disabled] {
+button:disabled {
   opacity: 0.5;
-  cursor: default;
+  cursor: not-allowed;
 }
 /*# sourceMappingURL=index.css.map */
