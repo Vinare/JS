@@ -20,8 +20,11 @@ const totalCountRollback = document.getElementsByClassName('total-input')[4];
 let screens = document.querySelectorAll('.screen');
 
 const screensInput = document.querySelector('.main-controls__input > input');
+const screensSelect = document.querySelector('select');
+const selectedIndex = screensSelect.selectedIndex;
 
-console.dir(startBtn);
+console.dir(screensSelect);
+console.dir(screensInput);
 
 
 const appData = {
@@ -36,17 +39,28 @@ const appData = {
   services: {}, 
   init: function() {
     appData.addTitle();
-    appData.blockButton();
-    appData.start();
+    startBtn.disabled = true;
+    screensInput.addEventListener('input', appData.toggleButton);
+    screensSelect.addEventListener('change', appData.toggleButton);
   },
   addTitle: function() {
     document.title = title.textContent;
   },
-  blockButton: function() {
-    startBtn.setAttribute("disabled", "disabled");
+
+  toggleButton: function() {
+    screens.forEach(function(screen) {
+      const select = screen.querySelector('select');
+      const input = screen.querySelector('input');
+
+      if (input.value !== "".trim() && select.selectedIndex !== 0 ) {
+        startBtn.disabled = false;
+      } else { 
+        startBtn.disabled = true;
+      }
+    });
   },
+
   start: function() {
-    // appData.asking();
     // appData.addPrices();
     // appData.getFullPrice();
     // appData.getServicePercentPrice();
@@ -84,9 +98,6 @@ const appData = {
 
   
 
- 
-  
-  // appData.screensInput.addEventListener('change', notEmptyString);
 
   isNumber: function(num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
