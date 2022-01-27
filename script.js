@@ -1,12 +1,12 @@
-const title = 1
-const screens = 2
-const screenPrice = 3
-const rollback = 4
-const fullPrice = 5
-const adaptive = 6
+let title;
+let screens;
+let screenPrice;
+let rollback;
+let fullPrice;
+let adaptive;
 
-alert("Привет, Виталий!")
+alert("Привет, Сергей!");
 
-console.log("Надоели групповые созвоны")
+console.log("Хорошего дня!");
 
 
