@@ -1,24 +1,22 @@
-const title = "Mobile Design project"
-const screens = '"Простые, Сложные, Интерактивные"'
-const screenPrice = 1000
-const rollback = 90
-const fullPrice = 150000
-const adaptive = true
+let title = "Mobile Design project";
+let screens = '"Простые, Сложные, Интерактивные"';
+let screenPrice = 1000;
+let rollback = 5;
+let fullPrice = 150000;
+let adaptive = true;
 
-console.log(typeof title)
-console.log(typeof fullPrice)
-console.log(typeof adaptive)
+console.log(typeof title);
+console.log(typeof fullPrice);
+console.log(typeof adaptive);
 
-console.log(screens.length)
+console.log(screens.length);
 
-console.log("Стоимость верстки экранов " + screenPrice + " рублей")
-console.log("Стоимость разработки сайта " + fullPrice + " рублей")
+console.log("Стоимость верстки экранов " + screenPrice + " рублей");
+console.log("Стоимость разработки сайта " + fullPrice + " рублей");
 
-console.log(screens.toLowerCase())
+console.log(screens.toLowerCase().split());
 
-console.log(screens.split())
-
-console.log("Процент отката посреднику за работу (" + fullPrice * (rollback / 100) + ")")
+console.log("Процент отката посреднику за работу (" + fullPrice * (rollback / 100) + ")");
 
 
 
