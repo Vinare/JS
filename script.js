@@ -9,7 +9,7 @@ const servicePrice1 = prompt('Сколько это будет стоить?');
 const service2 = prompt('Какой дополнительный тип услуги нужен?');
 const servicePrice2 = prompt('Сколько это будет стоить?');
 const fullPrice = parseInt(screenPrice) + parseInt(servicePrice1) + parseInt(servicePrice2);
-const servicePercentPrice = Math.ceil(fullPrice - 3000.5);
+const servicePercentPrice = Math.ceil(fullPrice * 5/100);
 
 console.log(servicePercentPrice);
 
