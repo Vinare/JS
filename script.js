@@ -1,5 +1,6 @@
 "use strict";
 
+let rollback = 5;
 const title = prompt('Как называется ваш проект?');
 const screens = prompt('Какие типы экранов нужно разработать?', "Простые, Сложные, Интерактивные");
 const screenPrice = prompt('Сколько будет стоить данная работа?', '12000 руб.');
@@ -9,7 +10,7 @@ const servicePrice1 = prompt('Сколько это будет стоить?');
 const service2 = prompt('Какой дополнительный тип услуги нужен?');
 const servicePrice2 = prompt('Сколько это будет стоить?');
 const fullPrice = parseInt(screenPrice) + parseInt(servicePrice1) + parseInt(servicePrice2);
-const servicePercentPrice = Math.ceil(fullPrice * 5/100);
+const servicePercentPrice = Math.ceil(fullPrice * rollback/100);
 
 console.log(servicePercentPrice);
 
