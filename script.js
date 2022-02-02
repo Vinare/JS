@@ -1,6 +1,7 @@
 "use strict";
 
 let rollback = 5;
+let allServicePrices;
 let title = prompt('Как называется ваш проект?');
 let screens = prompt('Какие типы экранов нужно разработать?', "Простые, Сложные, Интерактивные");
 let screenPrice = +prompt('Сколько будет стоить данная работа?', '12000');
@@ -28,9 +29,9 @@ function getRollbackMessage(price) {
   }
 }
 
-let allServicePrices = function getAllServicePrices(expenses1, expenses2) {
+function getAllServicePrices(expenses1, expenses2) {
   return expenses1 + expenses2;
-};
+}
 
 function getFullPrice(screenprice, addprice) {
   return screenprice + addprice;
@@ -45,19 +46,21 @@ const rollBacksum = function(totalprice, rollbackpercent) {
   return totalprice * (rollbackpercent/100);
 };
 
-servicePercentPrice = function getServicePercentPrices(totalprice, callback) {
+function getServicePercentPrices(totalprice, callback) {
   return totalprice - callback(fullPrice, rollback);
-};
+}
 
 showTypeOf(title);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
-allServicePrices(servicePrice1, servicePrice2); 
-getFullPrice(screenPrice, allServicePrices(servicePrice1, servicePrice2)); 
-getTitle(title);
+
+allServicePrices = getAllServicePrices(servicePrice1, servicePrice2); 
+fullPrice = getFullPrice(screenPrice, allServicePrices); 
+title = getTitle(title);
+servicePercentPrice = getServicePercentPrices(fullPrice, rollBacksum);
 
 console.log(getRollbackMessage(fullPrice));
-console.log(servicePercentPrice(fullPrice, rollBacksum));
+console.log(servicePercentPrice);
 console.log(screens.split(', '));
 
 
