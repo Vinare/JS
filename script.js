@@ -36,27 +36,25 @@ const getAllServicePrices = function() {
   let sum = 0;
 
   for (let i = 0; i < 2; i++) {
+    let price = 0;
 
     if (i === 0) {
       service1 = prompt('Какой дополнительный тип услуги нужен?');
-      
-      while (!isNumber(servicePrice1)) {
-        servicePrice1 = prompt('Сколько это будет стоить?');
-      }
     } else if (i === 1) {
       service2 = prompt('Какой дополнительный тип услуги нужен?');
-
-      while (!isNumber(servicePrice2)) {
-        servicePrice2 = prompt('Сколько это будет стоить?');
-      }
     }
-   sum = servicePrice1 + servicePrice2;
+
+    do {
+      price = prompt('Сколько это будет стоить?');
+    } while (!isNumber(price)); 
+
+    sum += +price;
   }
   return sum; 
 };
 
 const getFullPrice = function() {
-  return screenPrice + allServicePrices;
+  return +screenPrice + allServicePrices;
 };
 
 const getRollBackSum = function(totalprice, rollbackpercent) {
