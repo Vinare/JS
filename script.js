@@ -50,13 +50,7 @@ const appData = {
           name = prompt('Какой дополнительный тип услуги нужен?');
       }
       
-      let price = 0;
-
-      // if (i === 0) {
-      //   appData.name1 = prompt('Какой дополнительный тип услуги нужен?');
-      // } else if (i === 1) {
-      //   appData.name2 = prompt('Какой дополнительный тип услуги нужен?');
-      // } 
+      let price = 0; 
 
       do {
           price = prompt('Сколько это будет стоить?');
