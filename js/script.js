@@ -24,29 +24,29 @@ const screensSelect = document.querySelector('select');
 const selectedIndex = screensSelect.selectedIndex;
 startBtn.disabled = true;
 
-
-
-
-
 const appData = {
   title: '', 
   screens: [], 
   screenPrice: 0, 
-  adaptive: true,  
-  rollback: 5,
+  adaptive: true,
+  rollback: 5,  
+  count: 0,
   allServicePricesPercent: 0,
   allServicePricesNumber: 0,
   fullPrice: 0, 
   servicePercentPrice: 0, 
   servicesPercent: {},
   servicesNumber: {}, 
+  
   init: function() {
     appData.addTitle();
     screensInput.addEventListener('input', appData.toggleButton);
     screensSelect.addEventListener('change', appData.toggleButton);
+    inputRange.addEventListener('input', appData.addRollback);
     startBtn.addEventListener('click', appData.start);
     buttonPlus.addEventListener('click', appData.addScreenBlock);
   },
+
   addTitle: function() {
     document.title = title.textContent;
   },
@@ -60,21 +60,25 @@ const appData = {
     });  
   },
 
+  addRollback: function() {
+    appData.rollback = +inputRange.value;
+    rangeValue.textContent = inputRange.value + '%';
+  },
+
   start: function() {
     appData.addScreens();
     appData.addServices();
     appData.addPrices();
-    // appData.getServicePercentPrice();
-     
-    // appData.logger();
     appData.showResult();
   },
 
   showResult: function() {
     total.value = appData.screenPrice; // стоимость верстки всех экранов
+    totalСount.value = appData.count;  // общее количество экранов
     totalСountOther.value = appData.allServicePricesPercent + appData.allServicePricesNumber; 
     // стоимость всех доп услуг
     fullTotalCount.value = appData.fullPrice; // итоговая стоимость
+    totalCountRollback.value = appData.servicePercentPrice;
   },
 
   addScreens: function() {
@@ -84,9 +88,10 @@ const appData = {
       const select = screen.querySelector('select');
       const input = screen.querySelector('input');
       const selectName = select.options[select.selectedIndex].textContent;
-       
-      appData.screens.push({id: index, name: selectName, price: +select.value * +input.value});
+ 
+      appData.screens.push({id: index, name: selectName, price: +select.value * +input.value, screenscount: +input.value});
     });
+    console.log(appData.screens);
   },
 
   addServices: function() {
@@ -120,7 +125,8 @@ const appData = {
 
   addPrices: function() {  // суммируем общую стоимость экранов и услуг
     for (let screen of appData.screens) {
-        appData.screenPrice += +screen.price;  // суммируем стоимость верстки всех экранов
+        appData.screenPrice += screen.price;  // суммируем стоимость верстки всех экранов
+        appData.count += screen.screenscount; // и общее количество экранов
     }
 
     for(let key in appData.servicesPercent) {        // суммируем стоимость всех процент услуг
@@ -131,34 +137,10 @@ const appData = {
       appData.allServicePricesNumber += appData.servicesNumber[key];
     }
 
-    appData.fullPrice = +appData.screenPrice + appData.allServicePricesPercent + appData.allServicePricesNumber;
+    appData.fullPrice = +appData.screenPrice + appData.allServicePricesPercent + appData.allServicePricesNumber;      // получаем итоговую стоимость
 
-    
-    console.log(appData.allServicePricesPercent);
-    
-  },
-  
-  getServicePercentPrice: function() {
-    appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100));
-  },
-  
-  getRollbackMessage: function(price) {
-    if (price >= 30000) {
-      return 'Даем скидку в 10%';
-    } else if (price < 30000 && price >= 15000) {
-      return 'Даем скидку в 5%';
-    } else if (price < 15000 && price > 0) {
-      return 'Скидка не предусмотрена';
-    } else {
-      return 'Что-то пошло не так';
-    }
-  },
-  logger: function() {
-    console.log(appData.fullPrice);
-    console.log(appData.servicePercentPrice);
-    console.log(appData.services);
-    console.log(appData.screens);
-  }
+    appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100));                  // итоговая стоимость с учетом отката 
+  },  
 };
 
 appData.init();
