@@ -73,11 +73,10 @@ const appData = {
   },
 
   showResult: function() {
-    total.value = appData.screenPrice; // стоимость верстки всех экранов
+    total.value = appData.screenPrice;  // стоимость верстки всех экранов
     totalСount.value = appData.count;  // общее количество экранов
-    totalСountOther.value = appData.allServicePricesPercent + appData.allServicePricesNumber; 
-    // стоимость всех доп услуг
-    fullTotalCount.value = appData.fullPrice; // итоговая стоимость
+    totalСountOther.value = appData.allServicePricesPercent + appData.allServicePricesNumber;  // стоимость всех доп услуг
+    fullTotalCount.value = appData.fullPrice;  // итоговая стоимость
     totalCountRollback.value = appData.servicePercentPrice;
   },
 
