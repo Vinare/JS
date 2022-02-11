@@ -122,23 +122,23 @@ const appData = {
     screens[screens.length - 1].after(cloneScreen);
   },
 
-  addPrices: function() {  // суммируем общую стоимость экранов и услуг
+  addPrices: function() {  // суммируем стоимости
     for (let screen of appData.screens) {
         appData.screenPrice += screen.price;  // суммируем стоимость верстки всех экранов
-        appData.count += screen.screenscount; // и общее количество экранов
+        appData.count += screen.screenscount;  // и общее количество экранов
     }
 
-    for(let key in appData.servicesPercent) {        // суммируем стоимость всех процент услуг
+    for(let key in appData.servicesPercent) {  // суммируем стоимость всех процент услуг
       appData.allServicePricesPercent += appData.screenPrice * (appData.servicesPercent[key] / 100);
     }
 
-    for(let key in appData.servicesNumber) {         // суммируем стоимость всех фиксир услуг
+    for(let key in appData.servicesNumber) {  // суммируем стоимость всех фиксир услуг
       appData.allServicePricesNumber += appData.servicesNumber[key];
     }
 
-    appData.fullPrice = +appData.screenPrice + appData.allServicePricesPercent + appData.allServicePricesNumber;      // получаем итоговую стоимость
+    appData.fullPrice = +appData.screenPrice + appData.allServicePricesPercent + appData.allServicePricesNumber;  // получаем итоговую стоимость
 
-    appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100));                  // итоговая стоимость с учетом отката 
+    appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice * (appData.rollback / 100));  // итоговая стоимость с учетом отката 
   },  
 };
 
