@@ -63,7 +63,6 @@ const appData = {
   addRollback: function() {
     appData.rollback = +inputRange.value;
     rangeValue.textContent = inputRange.value + '%';
-    console.log(appData.rollback);
   },
 
   start: function() {
