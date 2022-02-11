@@ -42,7 +42,7 @@ const appData = {
     appData.addTitle();
     screensInput.addEventListener('input', appData.toggleButton);
     screensSelect.addEventListener('change', appData.toggleButton);
-    inputRange.addEventListener('input', appData.addRollback);
+    inputRange.addEventListener('change', appData.addRollback);
     startBtn.addEventListener('click', appData.start);
     buttonPlus.addEventListener('click', appData.addScreenBlock);
   },
@@ -63,6 +63,7 @@ const appData = {
   addRollback: function() {
     appData.rollback = +inputRange.value;
     rangeValue.textContent = inputRange.value + '%';
+    console.log(appData.rollback);
   },
 
   start: function() {
