@@ -75,6 +75,9 @@ const appData = {
   },
 
   blockBtn: function() {
+    screensInput.disabled = true;
+    screensSelect.disabled = true;
+    
     inputCheckbox.forEach((checkbox) => {
       checkbox.disabled = true;
       checkbox.classList.toggle('custom-checkbox-disactive');
