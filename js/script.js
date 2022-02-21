@@ -22,6 +22,7 @@ let screens = document.querySelectorAll('.screen');
 const screensInput = document.querySelector('.main-controls__input > input');
 const inputCheckbox = document.querySelectorAll('.custom-checkbox');
 const screensSelect = document.querySelector('select');
+const inputTotal = document.querySelectorAll('.total-input');
 const selectedIndex = screensSelect.selectedIndex;
 startBtn.disabled = true;
 
@@ -45,6 +46,7 @@ const appData = {
     screensSelect.addEventListener('change', this.toggleButton);
     inputRange.addEventListener('change', this.addRollback);
     startBtn.addEventListener('click', this.start.bind(this));
+    resetBtn.addEventListener('click', this.reset.bind(this));
     buttonPlus.addEventListener('click', this.addScreenBlock);
   },
 
@@ -67,27 +69,74 @@ const appData = {
   },
 
   start: function() {
-    this.blockBtn();
     this.addScreens();
     this.addServices();
     this.addPrices();
     this.showResult();
+    this.blockBtn();
   },
 
   blockBtn: function() {
     screensInput.disabled = true;
     screensSelect.disabled = true;
-    
+    startBtn.style.display = "none";
+    resetBtn.style.display = "block";
+
     inputCheckbox.forEach((checkbox) => {
       checkbox.disabled = true;
       checkbox.classList.toggle('custom-checkbox-disactive');
     });
   },
 
+  reset: function() {
+    this.changeBtn();
+    this.init();
+  },
+
+  changeBtn: function() {
+    resetBtn.style.display = "none";
+    startBtn.style.display = "block";
+    screensInput.disabled = false;
+    screensSelect.disabled = false;
+
+    screens.forEach((screen) => {
+      screens = document.querySelectorAll('.screen');
+
+      const select = screen.querySelector('select');
+      const input = screen.querySelector('input');
+     
+      select.selectedIndex = 0;
+      input.value = '';
+      console.log(this.screens);
+    });
+
+    inputCheckbox.forEach((checkbox) => {
+      checkbox.checked = (checkbox.checked) ? false : false;
+      checkbox.disabled = false;
+      checkbox.classList.toggle('custom-checkbox-disactive');
+
+      rangeValue.textContent = '0%';
+      inputRange.value = '0';
+    });
+
+    this.screenPrice = 0;  // обнуляем значения переменных
+    console.log(this.screenPrice);
+    this.count = 0;  
+    console.log(this.count);
+    this.allAddServices = 0;  
+    console.log(this.allAddServices);
+    this.fullPrice = 0;  
+    console.log(this.fullPrice);
+    this.servicePercentPrice = 0;
+    console.log(this.servicePercentPrice);
+    screen.price = 0;
+    console.log(screen.price);
+  },
+ 
   showResult: function() {
     total.value = this.screenPrice;  // стоимость верстки всех экранов
     totalСount.value = this.count;  // общее количество экранов
-    totalСountOther.value = this.allServicePricesPercent + this.allServicePricesNumber;  // стоимость всех доп услуг
+    totalСountOther.value = this.allAddServices;  // стоимость всех доп услуг
     fullTotalCount.value = this.fullPrice;  // итоговая стоимость
     totalCountRollback.value = this.servicePercentPrice;
   },
@@ -101,6 +150,8 @@ const appData = {
       const selectName = select.options[select.selectedIndex].textContent;
  
       this.screens.push({id: index, name: selectName, price: +select.value * +input.value, screenscount: +input.value});
+
+      console.log(this.screens);
     });
   },
 
@@ -146,6 +197,8 @@ const appData = {
     for(let key in this.servicesNumber) {  // суммируем стоимость всех фиксир услуг
       this.allServicePricesNumber += this.servicesNumber[key];
     }
+
+    this.allAddServices = this.allServicePricesPercent + this.allServicePricesNumber;  // стоимость всех доп услуг
 
     this.fullPrice = +this.screenPrice + this.allServicePricesPercent + this.allServicePricesNumber;  // получаем итоговую стоимость
 
