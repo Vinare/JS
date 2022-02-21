@@ -56,7 +56,6 @@ const appData = {
 
   toggleButton: function() {
     screens.forEach((screen) => {
-      screens = document.querySelectorAll('.screen');
       const select = screen.querySelector('select');
       const input = screen.querySelector('input');
      
