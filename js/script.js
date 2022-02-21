@@ -41,11 +41,11 @@ const appData = {
   
   init: function() {
     this.addTitle();
-    screensInput.addEventListener('input', appData.toggleButton);
-    screensSelect.addEventListener('change', appData.toggleButton);
-    inputRange.addEventListener('change', appData.addRollback);
-    startBtn.addEventListener('click', appData.start);
-    buttonPlus.addEventListener('click', appData.addScreenBlock);
+    screensInput.addEventListener('input', this.toggleButton);
+    screensSelect.addEventListener('change', this.toggleButton);
+    inputRange.addEventListener('change', this.addRollback);
+    startBtn.addEventListener('click', this.start.bind(this));
+    buttonPlus.addEventListener('click', this.addScreenBlock);
   },
 
   addTitle: function() {
@@ -67,11 +67,11 @@ const appData = {
   },
 
   start: function() {
-    appData.blockBtn();
-    appData.addScreens();
-    appData.addServices();
-    appData.addPrices();
-    appData.showResult();
+    this.blockBtn();
+    this.addScreens();
+    this.addServices();
+    this.addPrices();
+    this.showResult();
   },
 
   blockBtn: function() {
