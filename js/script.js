@@ -114,45 +114,28 @@ const appData = {
     screensInput.value = '';
     screensSelect.selectedIndex = 0;
     
-    this.screens.length = 0;
+    this.screens.length = 0;   
+
+    this.servicesNumber = {};
+    this.servicesPercent = {};
 
     inputCheckbox.forEach((checkbox) => {
-      checkbox.checked = (checkbox.checked) ? false : false;
+      checkbox.checked = false;
       checkbox.disabled = false;
       checkbox.classList.toggle('custom-checkbox-disactive');
-
-      rangeValue.textContent = '0%';
-      inputRange.value = '0';
     });
 
-    otherItemsPercent.forEach((item) => {
-      const check = item.querySelector('input[type=checkbox]');
-      const label = item.querySelector('label');
-      const input = item.querySelector('input[type=text]');
-
-      if (check.checked) {
-        label.textContent = '';
-        input.value = 0;
-      }
-    });
-
-    otherItemsNumber.forEach((item) => {
-      const check = item.querySelector('input[type=checkbox]');
-      const label = item.querySelector('label');
-      const input = item.querySelector('input[type=text]');
-      
-      if (check.checked) {
-        label.textContent = '';
-        input.value = 0;
-      }
-    });
+    rangeValue.textContent = '0%'; 
+    inputRange.value = '0';
 
     this.screenPrice = 0;  // обнуляем значения переменных
     this.count = 0;  
     this.allAddServices = 0;  
     this.fullPrice = 0;  
     this.servicePercentPrice = 0;
-
+    this.allServicePricesPercent = 0;
+    this.allServicePricesNumber = 0;
+    this.rollback = 0;
     this.showResult();
   },
  
