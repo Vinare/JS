@@ -78,8 +78,14 @@ const appData = {
   },
 
   blockBtn: function() {
-    screensInput.disabled = true;
-    screensSelect.disabled = true;
+    screens.forEach((screen) => {
+      const select = screen.querySelector('select');
+      const input = screen.querySelector('input');
+      
+      select.disabled = true;
+      input.disabled = true;
+    });
+
     startBtn.style.display = "none";
     resetBtn.style.display = "block";
 
@@ -92,18 +98,22 @@ const appData = {
   reset: function() {
     resetBtn.style.display = "none";
     startBtn.style.display = "block";
+
+    let fckInputs = document.querySelectorAll('.main-controls__item.screen');
+
+    let i, len;
+
+    for (i = 0, len = fckInputs.length; i < len; ++i) {
+      if(i > 0) {
+        fckInputs[i].remove();
+      }
+    }
+    
     screensInput.disabled = false;
     screensSelect.disabled = false;
-
-    screens.forEach((screen) => {
-      const select = screen.querySelector('select');
-      const input = screen.querySelector('input');
-     
-      select.selectedIndex = 0;
-      input.value = '';
-      console.log(this.screens);
-    });
-
+    screensInput.value = '';
+    screensSelect.selectedIndex = 0;
+    
     this.screens.length = 0;
 
     inputCheckbox.forEach((checkbox) => {
@@ -119,14 +129,10 @@ const appData = {
       const check = item.querySelector('input[type=checkbox]');
       const label = item.querySelector('label');
       const input = item.querySelector('input[type=text]');
-      
-      this.servicesPercent = Object.assign({});
 
       if (check.checked) {
         label.textContent = '';
         input.value = 0;
-
-        console.log(this.servicesPercent);
       }
     });
 
@@ -139,8 +145,6 @@ const appData = {
         label.textContent = '';
         input.value = 0;
       }
-
-      console.log(this.servicesNumber);
     });
 
     this.screenPrice = 0;  // обнуляем значения переменных
@@ -169,8 +173,6 @@ const appData = {
       const selectName = select.options[select.selectedIndex].textContent;
  
       this.screens.push({id: index, name: selectName, price: +select.value * +input.value, screenscount: +input.value});
-
-      console.log(this.screens);
     });
   },
 
@@ -182,7 +184,6 @@ const appData = {
       
       if (check.checked) {
         this.servicesPercent[label.textContent] = +input.value;
-        console.log(this.servicesPercent);
       }
     });
 
@@ -193,7 +194,6 @@ const appData = {
       
       if (check.checked) {
         this.servicesNumber[label.textContent] = +input.value;
-        console.log(this.servicesNumber);
       }
     });
   },
